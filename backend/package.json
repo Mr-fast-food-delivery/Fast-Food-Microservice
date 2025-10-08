@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "crypto": "^1.0.1",
+    "mongoose": "^8.19.1",
+    "redis": "^5.8.3"
+  }
+}
