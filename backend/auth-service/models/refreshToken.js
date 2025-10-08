@@ -39,7 +39,12 @@ RefreshTokenSchema.index({ user: 1 });
 RefreshTokenSchema.index({ token: 1 });
 RefreshTokenSchema.index({ expiresAt: 1 });
 
-// Generate a new refresh token
+/**
+ * Generate a new refresh token
+ * @param {String} userId - User ID to associate with the token
+ * @param {Object} options - Additional options like userAgent, ip, expiresIn
+ * @returns {Object} The refresh token document
+ */
 RefreshTokenSchema.statics.generateToken = async function (
   userId,
   options = {}
@@ -58,8 +63,12 @@ RefreshTokenSchema.statics.generateToken = async function (
   return refreshToken;
 };
 
-// Find a valid token
-okenSchema.statics.findValidToken = async function (token) {
+/**
+ * Find a valid token
+ * @param {String} token - Token to validate
+ * @returns {Object} The token document or null
+ */
+RefreshTokenSchema.statics.findValidToken = async function (token) {
   return this.findOne({
     token,
     expiresAt: { $gt: Date.now() },
@@ -67,12 +76,20 @@ okenSchema.statics.findValidToken = async function (token) {
   }).populate("user");
 };
 
-// Revoke a token
+/**
+ * Revoke a token
+ * @param {String} token - Token to revoke
+ * @returns {Object} Updated token document
+ */
 RefreshTokenSchema.statics.revokeToken = async function (token) {
   return this.findOneAndUpdate({ token }, { isRevoked: true }, { new: true });
 };
 
-// Revoke all tokens for a user
+/**
+ * Revoke all tokens for a user
+ * @param {String} userId - User ID to revoke tokens for
+ * @returns {Object} Result of the update operation
+ */
 RefreshTokenSchema.statics.revokeAllUserTokens = async function (userId) {
   return this.updateMany(
     { user: userId, isRevoked: false },
