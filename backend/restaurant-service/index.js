@@ -2,8 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
-const foodItemRoutes = require("./routes/foodItemRoutes");
-const debugRoutes = require("./routes/debugRoutes");
 
 // Connect to MongoDB
 connectDB();
@@ -16,10 +14,6 @@ const PORT = process.env.PORT || 3002;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-
-// Routes
-app.use("/api/food-items", foodItemRoutes);
-app.use("/api/debug", debugRoutes);
 
 // Base route
 app.get("/", (req, res) => {
