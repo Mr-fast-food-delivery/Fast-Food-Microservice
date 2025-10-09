@@ -5,7 +5,7 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: dockerfile.simple
+      dockerfile: dockerfile
     ports:
       - "3000:3000"
     depends_on:

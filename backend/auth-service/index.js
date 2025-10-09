@@ -43,6 +43,11 @@ app.get("/", (req, res) => {
   res.send("Auth Service is running!");
 });
 
+// Health check route
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
