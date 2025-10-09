@@ -18,7 +18,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ChangePassword from './pages/ChangePassword';
 
 // Admin pages
-import AdminDashboard from './pages/admin/Dashboard';
+import AdminDashboard from './pages/admin/DashBoard';
 import UserManagement from './pages/admin/UserManagement';
 import CreateUser from './pages/admin/CreateUser';
 import EditUser from './pages/admin/EditUser';
@@ -28,17 +28,17 @@ import Settings from './pages/admin/Settings';
 import ProtectedRoute from './components/ProtectedRoute';
 
 // Customer pages
-import CustomerDashboard from './pages/customer/Dashboard';
+import CustomerDashboard from './pages/customer/DashBoard';
 
 // Restaurant admin pages
-import RestaurantDashboard from './pages/restaurant/Dashboard';
+import RestaurantDashboard from './pages/restaurant/DashBoard';
 import FoodItems from './pages/restaurant/FoodItems';
 import CreateFoodItem from './pages/restaurant/CreateFoodItem';
 import EditFoodItem from './pages/restaurant/EditFoodItem';
 import RestaurantSettings from './pages/restaurant/Settings';
 
 // Delivery personnel pages
-import DeliveryDashboard from './pages/delivery/Dashboard';
+import DeliveryDashboard from './pages/delivery/DashBoard';
 
 // Custom theme builder function that accepts mode (light/dark)
 const createAppTheme = (mode) => createTheme({
