@@ -4,11 +4,7 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useTheme } from "../context/ThemeContext";
 
-/**
- * ThemeToggle component for switching between light and dark mode
- *
- * @returns {React.ReactElement} A button component that toggles the theme
- */
+// ThemeToggle component for switching between light and dark mode
 const ThemeToggle = () => {
   const { mode, toggleTheme } = useTheme();
 
