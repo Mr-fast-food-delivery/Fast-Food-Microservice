@@ -10,7 +10,6 @@ import {
   Avatar,
   Tooltip,
 } from "@mui/material";
-import PersonIcon from "@mui/icons-material/Person";
 import PeopleIcon from "@mui/icons-material/People";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
