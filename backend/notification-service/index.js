@@ -14,6 +14,10 @@ app.get("/", (req, res) => {
   res.send("Notification Service is running!");
 });
 
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Notification Service running on port ${PORT}`);

@@ -1,0 +1,30 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Cài thêm curl để healthcheck dễ dùng
+RUN apk --no-cache add curl wget
+
+# Copy dependency files
+COPY package.json ./
+RUN npm install
+
+# Copy toàn bộ mã nguồn
+COPY . .
+
+# Tạo script start.sh để tự sửa URL nếu có biến môi trường
+RUN echo '#!/bin/sh' > /app/start.sh && \
+    echo 'echo "🔧 Setting API URLs..."' >> /app/start.sh && \
+    echo 'if [ -f /app/src/services/api.js ]; then' >> /app/start.sh && \
+    echo '  sed -i"" "s|http://localhost:3001|${REACT_APP_AUTH_URL:-http://auth-service:3001}|g" /app/src/services/api.js' >> /app/start.sh && \
+    echo '  sed -i"" "s|http://localhost:3003|${REACT_APP_API_URL:-http://order-service:3003}|g" /app/src/services/api.js' >> /app/start.sh && \
+    echo '  sed -i"" "s|http://localhost:3002|${REACT_APP_RESTAURANT_URL:-http://restaurant-service:3002}|g" /app/src/services/api.js' >> /app/start.sh && \
+    echo 'fi' >> /app/start.sh && \
+    echo 'export HOST=0.0.0.0' >> /app/start.sh && \
+    echo 'export WDS_SOCKET_PORT=0' >> /app/start.sh && \
+    echo 'npm start' >> /app/start.sh && \
+    chmod +x /app/start.sh
+
+EXPOSE 3000
+
+CMD ["/bin/sh", "/app/start.sh"]
